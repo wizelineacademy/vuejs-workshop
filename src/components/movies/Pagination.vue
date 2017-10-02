@@ -33,6 +33,14 @@
 
 <script>
 export default {
+
+  data () {
+    return {
+      currentPage: 1,
+      pages: 5
+    }
+  },
+
   props: {
     maxNumberOfPages: {
       type: Number,
@@ -65,7 +73,7 @@ export default {
 
   methods: {
     clickedPage (page) {
-      this.gotoPage(page)
+      // TODO change and retrieve page of movies
       this.scrollToTop()
     },
     scrollToTop () {
