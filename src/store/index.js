@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import { getCookie, setCookie } from 'tiny-cookie';
+import MovieService from '../services/MovieService'
 
 Vue.use(Vuex)
 
@@ -27,33 +27,16 @@ export default new Vuex.Store({
 
   actions: {
     async fetchMovies (context, page = 1) {
-
-      const d = new Date();
-
-      // get movies sorted by popularity
-      let query = '/discover/movie?sort_by=popularity.desc'
-      query += `&page=${page}`
-      // with selected genre filter
-      const genre = context.state.selectedGenre
-      const genreQuery = genre ? `&with_genres=${genre}` : ''
-      query += genreQuery
-      // from two months ago
-      query += `&primary_release_date.gte=${d.getFullYear()}-${d.getMonth() - 1}-${d.getDate()}`
-      // until now
-      query += `&primary_release_date.lte=${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
-
-      // everything together including the api key
-      const request = `${url}${query}&api_key=${key}`
-
       context.commit('setLoading', true)
-      const response = await axios.get(request)
+      const response = await MovieService.getMovies({
+        page: page,
+        genre: context.state.selectedGenre,
+      })
       context.commit('setMovies', response.data)
       context.commit('setLoading', false)
     },
     async fetchGenres (context) {
-      let query = '/genre/movie/list'
-      const request = `${url}${query}?api_key=${key}`
-      const response = await axios.get(request)
+      const response = await MovieService.getGenres()
       context.commit('setGenres', response.data.genres)
     },
     gotoPage (context, page) {
