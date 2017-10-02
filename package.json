@@ -14,8 +14,7 @@
     "dotenv": "^4.0.0",
     "tiny-cookie": "^2.0.2",
     "vue": "^2.4.2",
-    "vue-router": "^2.7.0",
-    "vuex": "^2.4.1"
+    "vue-router": "^2.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

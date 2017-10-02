@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
-
 export default {
   props: {
     maxNumberOfPages: {
@@ -43,10 +41,6 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      pages: 'pages',
-      currentPage: 'currentPage'
-    }),
     shouldShow () {
       return this.pages > 1
     },
@@ -70,9 +64,6 @@ export default {
   },
 
   methods: {
-    ...mapActions({
-      gotoPage: 'gotoPage'
-    }),
     clickedPage (page) {
       this.gotoPage(page)
       this.scrollToTop()

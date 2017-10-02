@@ -5,6 +5,9 @@ const key = process.env.API_KEY
 
 export default {
   getMovies (queryObj) {
+    // queryObj params:
+    // { page, genre }
+
     const d = new Date();
     // get movies sorted by popularity
     let query = '/discover/movie?sort_by=popularity.desc'

@@ -9,32 +9,23 @@
 
     <div class="container">
 
-      <movie-filter v-if="section==='discover'"/>
+      <movie-filter/>
 
-      <div :class="{'row': true, 'movie-container':true, 'loading':loading}">
+      <div class="row movie-container">
 
-        <div v-if="movies.length===0">
-          <h3>There are no movies</h3>
-        </div>
-
-        <div
-          class="col-xs-12 col-sm-6 col-lg-3"
-          v-for="movie in movies"
-          :key="movie.id" >
-          <movie-card v-bind="movie" />
+        <div class="col-xs-12 col-sm-6 col-lg-3">
+          <movie-card :id="1"/>
         </div>
 
       </div>
 
-      <pagination v-if="section==='discover'"/>
+      <pagination />
 
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
-
 import MovieCard from './MovieCard'
 import MovieNav from './MovieNav'
 import Pagination from './Pagination'
@@ -46,23 +37,6 @@ export default {
     MovieNav,
     Pagination,
     MovieFilter
-  },
-
-  mounted () {
-    this.fetchGenres()
-    this.fetchMovies()
-    this.fetchSavedMovies()
-  },
-
-  computed: {
-    ...mapState(['section', 'loading']),
-    ...mapGetters({
-      movies: 'movieCards'
-    })
-  },
-
-  methods: {
-    ...mapActions(['fetchGenres', 'fetchMovies', 'fetchSavedMovies'])
   }
 }
 </script>

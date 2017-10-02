@@ -17,16 +17,16 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
 export default {
-  computed: {
-    ...mapState(['section'])
+  data () {
+    return {
+      section: 'discover'
+    }
   },
 
   methods: {
-    ...mapMutations(['gotoSection']),
     clicked (section) {
-      this.gotoSection(section)
+      // TODO change section
     }
   }
 }

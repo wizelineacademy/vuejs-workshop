@@ -20,27 +20,29 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
-      open: false
+      open: false,
+      genres: [
+        {name: 'Action', id: 1},
+        {name: 'Horror', id: 2},
+        {name: 'Comedy', id: 3},
+      ],
+      selectedGenreName: null
     }
   },
 
   computed: {
-    ...mapState(['genres', 'selectedGenre']),
-    ...mapGetters(['selectedGenreName']),
     filterText () {
       return this.selectedGenreName || 'Viewing all genres'
     }
   },
 
   methods: {
-    ...mapActions(['filterByGenre']),
     onFilterClick (genre) {
-      this.filterByGenre(genre)
+      // TODO filter movies
       this.open = false
     }
   }

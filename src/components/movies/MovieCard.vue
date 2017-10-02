@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
 import MovieVoteAverage from './MovieVoteAverage'
 
 export default {
@@ -50,7 +49,7 @@ export default {
     },
     image: {
       type: String,
-      default: 'http://lorempixel.com/318/180'
+      default: 'http://lorempixel.com/370/556'
     },
     title: {
       type: String,
@@ -75,7 +74,8 @@ export default {
       return this.image
     },
     saved () {
-      return this.savedMoviesIds.indexOf(this.id)>=0
+      // TODO check if movie is saved
+      return false
     },
     movieObject () {
       // We don't save vote_average because it may change
@@ -86,11 +86,15 @@ export default {
         'image': this.image,
       }
     },
-    ...mapGetters(['savedMoviesIds'])
   },
 
   methods: {
-    ...mapMutations(['saveMovie', 'removeSavedMovie'])
+    saveMovie () {
+      // TODO add movie to saved
+    },
+    removeSavedMovie (movieObject) {
+      // TODO remove saved movie
+    }
   }
 }
 </script>
