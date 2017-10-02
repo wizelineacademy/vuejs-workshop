@@ -75,7 +75,7 @@ export default new Vuex.Store({
       state.pages = moviesData.total_pages
     },
     setSavedMovies (state, savedMovies) {
-      state.savedMovies = savedMovies
+      state.savedMovies = savedMovies || []
     },
     setGenres (state, genres) {
       state.genres = genres
@@ -104,12 +104,14 @@ export default new Vuex.Store({
 
   getters: {
     savedMoviesIds (state) {
+      if (!state.savedMovies)
+        return []
       return state.savedMovies.map(movie => movie.id)
     },
     movieCards (state) {
       if (state.section === 'backlog')
         // show saved movies
-        return state.savedMovies
+        return state.savedMovies || []
 
       // show fetched movies
       const imageBasePath = 'http://image.tmdb.org/t/p/w370_and_h556_bestv2'

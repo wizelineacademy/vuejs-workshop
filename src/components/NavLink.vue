@@ -1,6 +1,5 @@
 <template>
-  <li :class="{'nav-item': true, 'active': currentRoute===to}"
-    @click="$emit('click', event)">
+  <li :class="{'nav-item': true, 'active': currentRoute===to}">
     <router-link class="nav-link" :to="to">
       {{label}}
     </router-link>

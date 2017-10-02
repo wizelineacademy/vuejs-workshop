@@ -9,9 +9,9 @@
     <div :class="{'collapse':collapse, 'navbar-collapse':true}">
       <ul class="navbar-nav">
 
-        <nav-link to="/" label="Home" @click="collapse=true" />
+        <nav-link to="/" label="Home"/>
 
-        <nav-link to="/movies" label="Movies" @click="collapse=true" />
+        <nav-link to="/movies" label="Movies"/>
 
       </ul>
     </div>
