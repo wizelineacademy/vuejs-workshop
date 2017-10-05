@@ -9,9 +9,9 @@
     <div :class="{'collapse':collapse, 'navbar-collapse':true}">
       <ul class="navbar-nav">
 
-        <nav-link to="/" label="Home"/>
+        <navbar-link to="/" label="Home"/>
 
-        <nav-link to="/movies" label="Movies"/>
+        <navbar-link to="/movies" label="Movies"/>
 
       </ul>
     </div>
@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import NavLink from './NavLink'
+import NavbarLink from './NavbarLink'
 export default {
   components: {
-    NavLink
+    NavbarLink
   },
   data () {
     return {

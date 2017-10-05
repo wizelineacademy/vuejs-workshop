@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import MovieVoteAverage from './MovieVoteAverage'
+import MovieCardVoteAverage from './MovieCardVoteAverage'
 
 export default {
   components: {
-    MovieVoteAverage
+    MovieCardVoteAverage
   },
 
   data () {
