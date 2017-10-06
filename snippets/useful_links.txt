@@ -1,0 +1,19 @@
+Vue CLI
+https://github.com/vuejs/vue-cli
+
+Vue dev tools
+https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=es
+
+Language syntax
+For atom  https://atom.io/packages/language-vue
+For sublime https://github.com/vuejs/vue-syntax-highlight
+For vs code  https://marketplace.visualstudio.com/items?itemName=liuji-jim.vue
+
+Style guide
+https://vuejs.org/v2/style-guide/
+
+Cheatsheet
+https://vuejs-tips.github.io/cheatsheet/
+
+SSR
+http://nuxtjs.org
