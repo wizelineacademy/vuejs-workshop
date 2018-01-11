@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
+    "moment": "^2.20.1",
     "tiny-cookie": "^2.0.2",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0"

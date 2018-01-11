@@ -1,29 +1,24 @@
 import axios from 'axios'
+import moment from 'moment'
 
 const url = process.env.MOVIES_URL
 const key = process.env.API_KEY
 
 export default {
   getMovies (queryObj) {
-    // queryObj params:
-    // { page, genre }
+    const twoMontsAgo = moment().subtract(2, 'month')
 
-    const d = new Date();
     // get movies sorted by popularity
-    let query = '/discover/movie?sort_by=popularity.desc'
-    query += `&page=${queryObj.page}`
     // with selected genre filter
-    const genreQuery = queryObj.genre ? `&with_genres=${queryObj.genre}` : ''
-    query += genreQuery
     // from two months ago
-    query += `&primary_release_date.gte=${d.getFullYear()}-${d.getMonth() - 1}-${d.getDate()}`
-    // until now
-    query += `&primary_release_date.lte=${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+    const query = {
+      'api_key': key,
+      'sort_by': 'popularity.desc',
+      'with_genres': queryObj.genre,
+      'primary_release_date.gte': twoMontsAgo.format('YY-MM-DD')
+    }
 
-    // everything together including the api key
-    const request = `${url}${query}&api_key=${key}`
-
-    return axios.get(request)
+    return axios.get(`${url}/discover/movie`, {params: query})
   },
 
   getGenres () {
