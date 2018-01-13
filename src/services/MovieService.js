@@ -15,7 +15,8 @@ export default {
       'api_key': key,
       'sort_by': 'popularity.desc',
       'with_genres': queryObj.genre,
-      'primary_release_date.gte': twoMontsAgo.format('YY-MM-DD')
+      'primary_release_date.gte': twoMontsAgo.format('YY-MM-DD'),
+      'page': queryObj.page
     }
 
     return axios.get(`${url}/discover/movie`, {params: query})
