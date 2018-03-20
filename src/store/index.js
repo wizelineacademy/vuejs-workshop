@@ -9,13 +9,15 @@ const store = {
     hello: 'world',
     movies: [],
     genres: [],
-    selectedGenre: null
+    selectedGenre: null,
+    pages: 1,
+    currentPage: 1
   },
 
   actions: {
-    async fetchMovies (context) {
+    async fetchMovies (context, page = 1) {
       const response = await MovieService.getMovies({
-        page: 1,
+        page: page,
         genre: context.state.selectedGenre
       })
       context.commit('setMovies', response.data)
@@ -23,6 +25,9 @@ const store = {
     async fetchGenres (context) {
       const response = await MovieService.getGenres()
       context.commit('setGenres', response.data)
+    },
+    fetchPage(context, page) {
+      context.dispatch('fetchMovies', page)
     },
     fetchByGenre(context, genre) {
       context.commit('setSelectedGenre', genre)
@@ -33,6 +38,8 @@ const store = {
   mutations: {
     setMovies(state, moviesData) {
       state.movies = moviesData.results
+      state.pages = moviesData.total_pages
+      state.currentPage = moviesData.page
     },
     setGenres(state, genresData) {
       state.genres = genresData.genres

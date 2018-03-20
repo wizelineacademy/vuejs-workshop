@@ -36,8 +36,6 @@ export default {
 
   data () {
     return {
-      currentPage: 1,
-      pages: 5
     }
   },
 
@@ -68,12 +66,18 @@ export default {
         pageCounter++
       }
       return pageArray
+    },
+    currentPage () {
+      return this.$store.state.currentPage
+    },
+    pages () {
+      return this.$store.state.pages
     }
   },
 
   methods: {
     clickedPage (page) {
-      // TODO change and retrieve page of movies
+      this.$store.dispatch('fetchPage', page)
       this.scrollToTop()
     },
     scrollToTop () {
