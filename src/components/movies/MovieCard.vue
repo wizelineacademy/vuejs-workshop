@@ -13,7 +13,7 @@
         <p class="card-text">{{description}}</p>
       </div>
 
-      <movie-vote-average :voteAverage="voteAverage"/>
+      <movie-card-vote-average :voteAverage="voteAverage"/>
 
       <a v-if="!saved" href="#" @click.prevent="saveMovie(movieObject)"
         class="btn btn-primary save-btn">
