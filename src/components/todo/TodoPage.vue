@@ -7,46 +7,23 @@
 
     <div class="container">
 
-      <form v-on:submit.prevent="addTask">
-        <div class="input-group">
-          <input v-model="newTask" type="text" class="form-control">
-          <div class="input-group-btn">
-            <button class="btn btn-warning">
-              add
-            </button>
-          </div>
-        </div>
-      </form>
+      <todo-form @addTask="addTask"/>
 
       <br>
 
       <h4>To do</h4>
-      <ul class="list-group">
-        <li v-for="(item, index) in pendingTasks"
-          v-bind:key="index"
-          class="list-group-item">
-            {{ item.description }} - {{item.isDone ? 'completed' : 'pending'}}
-            <button v-on:click="toggle(item)"
-              class="btn-btn-sm btn-primary float-right">
-              toggle
-            </button>
-        </li>
-      </ul>
+      <todo-list
+        @toggle="toggle"
+        @remove="remove"
+        :tasks="pendingTasks"/>
 
       <br>
 
       <h4>Done</h4>
-      <ul class="list-group">
-        <li v-for="(item, index) in doneTasks"
-          v-bind:key="index"
-          class="list-group-item">
-            {{ item.description }} - {{item.isDone ? 'completed' : 'pending'}}
-            <button v-on:click="toggle(item)"
-              class="btn-btn-sm btn-primary float-right">
-              toggle
-            </button>
-        </li>
-      </ul>
+      <todo-list
+        @toggle="toggle"
+        @remove="remove"
+        :tasks="doneTasks"/>
 
     </div>
 
@@ -54,7 +31,15 @@
 </template>
 
 <script>
+import TodoList from './TodoList'
+import TodoForm from './TodoForm'
+
 export default {
+  components: {
+    TodoList,
+    TodoForm
+  },
+
   data () {
     return {
       name: '',
@@ -80,16 +65,19 @@ export default {
     toggle(todo) {
       todo.isDone = !todo.isDone
     },
-    addTask () {
-      if(!this.newTask) {
+    addTask (newTask) {
+      if(!newTask) {
         return
       }
 
       this.tasks.push({
-        description: this.newTask,
+        description: newTask,
         isDone: false
       })
-      this.newTask = ''
+    },
+    remove(item) {
+      const itemIndex = this.tasks.indexOf(item)
+      this.tasks.splice(itemIndex, 1)
     }
   }
 }
