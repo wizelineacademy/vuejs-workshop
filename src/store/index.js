@@ -37,6 +37,10 @@ const store = {
     fetchByGenre(context, genre) {
       context.commit('setSelectedGenre', genre)
       context.dispatch('fetchMovies')
+    },
+    fetchSavedMovies (context) {
+      const savedMovies = localStorage.getItem('savedMovies')
+      context.commit('setSavedMovies', JSON.parse(savedMovies))
     }
   },
 
@@ -58,14 +62,21 @@ const store = {
     setSection(state, section) {
       state.currentSection = section
     },
+    setSavedMovies (state, savedMovies) {
+      if(savedMovies) {
+        state.savedMovies = savedMovies
+      }
+    },
     saveMovie (state, movieObject) {
       state.savedMovies.push(movieObject)
+      localStorage.setItem('savedMovies', JSON.stringify(state.savedMovies))
     },
     removeSavedMovie (state, movie) {
       const movieIndex = this.getters.savedMoviesIds.indexOf(movie.id)
       if (movieIndex >= 0) {
         state.savedMovies.splice(movieIndex, 1)
       }
+      localStorage.setItem('savedMovies', JSON.stringify(state.savedMovies))
     }
   },
 

@@ -59,6 +59,7 @@ export default {
 
   mounted () {
     this.$store.dispatch('fetchMovies')
+    this.$store.dispatch('fetchSavedMovies')
   }
 }
 </script>
