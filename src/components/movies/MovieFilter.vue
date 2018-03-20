@@ -41,8 +41,8 @@ export default {
   },
 
   methods: {
-    onFilterClick (genre) {
-      this.$store.dispatch('fetchByGenre', genre)
+    onFilterClick (genreId) {
+      this.$store.dispatch('fetchByGenre', genreId)
       this.open = false
     }
   },
