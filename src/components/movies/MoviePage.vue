@@ -3,6 +3,7 @@
 
     <div class="container">
       <h1>My movies backlog</h1>
+      <p>Hello {{message}}</p>
     </div>
 
     <movie-nav/>
@@ -37,6 +38,12 @@ export default {
     MovieNav,
     Pagination,
     MovieFilter
+  },
+
+  computed: {
+    message () {
+      return this.$store.state.hello
+    }
   }
 }
 </script>
