@@ -14,8 +14,10 @@
 
       <div class="row movie-container">
 
-        <div class="col-xs-12 col-sm-6 col-lg-3">
-          <movie-card :id="1"/>
+        <div v-for="(movie, index) in movies"
+          :key="index"
+          class="col-xs-12 col-sm-6 col-lg-3">
+          <movie-card v-bind="movie"/>
         </div>
 
       </div>
@@ -43,7 +45,14 @@ export default {
   computed: {
     message () {
       return this.$store.state.hello
+    },
+    movies () {
+      return this.$store.getters.movieCards
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('fetchMovies')
   }
 }
 </script>
