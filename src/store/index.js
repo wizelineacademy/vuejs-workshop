@@ -11,16 +11,19 @@ const store = {
     genres: [],
     selectedGenre: null,
     pages: 1,
-    currentPage: 1
+    currentPage: 1,
+    loading: false
   },
 
   actions: {
     async fetchMovies (context, page = 1) {
+      context.commit('setLoading', true)
       const response = await MovieService.getMovies({
         page: page,
         genre: context.state.selectedGenre
       })
       context.commit('setMovies', response.data)
+      context.commit('setLoading', false)
     },
     async fetchGenres (context) {
       const response = await MovieService.getGenres()
@@ -46,6 +49,9 @@ const store = {
     },
     setSelectedGenre(state, genre) {
       state.selectedGenre = genre
+    },
+    setLoading(state, value) {
+      state.loading = value
     }
   },
 

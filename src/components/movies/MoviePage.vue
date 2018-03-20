@@ -12,7 +12,7 @@
 
       <movie-filter/>
 
-      <div class="row movie-container">
+      <div class="row movie-container" :class="{'loading': isLoading}">
 
         <div v-for="(movie, index) in movies"
           :key="index"
@@ -48,6 +48,9 @@ export default {
     },
     movies () {
       return this.$store.getters.movieCards
+    },
+    isLoading () {
+      return this.$store.state.loading
     }
   },
 
