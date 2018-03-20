@@ -10,7 +10,7 @@
 
     <div class="container">
 
-      <movie-filter/>
+      <movie-filter v-if="isDiscover"/>
 
       <div class="row movie-container" :class="{'loading': isLoading}">
 
@@ -22,7 +22,7 @@
 
       </div>
 
-      <pagination />
+      <pagination v-if="isDiscover"/>
 
     </div>
   </div>
@@ -51,6 +51,9 @@ export default {
     },
     isLoading () {
       return this.$store.state.loading
+    },
+    isDiscover () {
+      return this.$store.state.currentSection === 'discover'
     }
   },
 

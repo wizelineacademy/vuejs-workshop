@@ -74,8 +74,7 @@ export default {
       return this.image
     },
     saved () {
-      // TODO check if movie is saved
-      return false
+      return this.$store.getters.savedMoviesIds.indexOf(this.id)>=0
     },
     movieObject () {
       // We don't save vote_average because it may change
@@ -90,10 +89,10 @@ export default {
 
   methods: {
     saveMovie () {
-      // TODO add movie to saved
+      this.$store.commit('saveMovie', this.movieObject)
     },
     removeSavedMovie (movieObject) {
-      // TODO remove saved movie
+      this.$store.commit('removeSavedMovie', this.movieObject)
     }
   }
 }
