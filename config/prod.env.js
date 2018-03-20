@@ -1,7 +1,4 @@
-require('dotenv').config()
-
+'use strict'
 module.exports = {
-  NODE_ENV: '"production"',
-  MOVIES_URL: `"${process.env.MOVIES_URL}"`,
-  API_KEY: `"${process.env.API_KEY}"`
+  NODE_ENV: '"production"'
 }

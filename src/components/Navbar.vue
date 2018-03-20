@@ -9,7 +9,7 @@
     <div :class="{'collapse':collapse, 'navbar-collapse':true}">
       <ul class="navbar-nav">
 
-        <navbar-link to="/" label="Home"/>
+        <navbar-link to="/" label="To do app"/>
 
         <navbar-link to="/movies" label="Movies"/>
 

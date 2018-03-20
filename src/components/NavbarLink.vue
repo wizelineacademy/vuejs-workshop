@@ -1,8 +1,8 @@
 <template>
-  <li :class="{'nav-item': true, 'active': currentRoute===to}">
-    <router-link class="nav-link" :to="to">
+  <li :class="{'nav-item': true, 'active': false}">
+    <a class="nav-link" :href="to">
       {{label}}
-    </router-link>
+    </a>
   </li>
 </template>
 
@@ -16,12 +16,6 @@ export default {
     label: {
       type: String,
       required: true
-    }
-  },
-
-  computed: {
-    currentRoute () {
-      return this.$route.path
     }
   }
 }
